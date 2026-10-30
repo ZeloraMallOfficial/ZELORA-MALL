@@ -1,110 +1,23 @@
-<!DOCTYPE html><html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZELORA MALL | Online Shopping</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f7f7fb;color:#222}
-header{background:#18213b;color:white;padding:22px 16px;text-align:center}
-header h1{margin:0;font-size:30px;letter-spacing:2px}
-header p{margin:8px 0 0;color:#e5c875}
-nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:white;padding:14px}
-nav a{color:#18213b;text-decoration:none;font-size:14px;font-weight:bold}
-main{max-width:1100px;margin:auto;padding:20px 14px}
-.hero{background:#18213b;color:white;padding:28px 20px;border-radius:12px;text-align:center}
-.hero h2{margin-top:0}
-.search{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin:20px 0;font-size:16px}
-h2.section{font-size:21px}
-.categories{display:flex;flex-wrap:wrap;gap:8px}
-.categories button{border:0;background:#e8eaf2;padding:10px 13px;border-radius:20px;cursor:pointer}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
-.card{background:white;padding:12px;border-radius:10px;box-shadow:0 2px 8px #00000010}
-.card img{width:100%;height:150px;object-fit:contain;background:#f3f3f3;border-radius:6px}
-.card h3{font-size:15px}
-.price{font-weight:bold;color:#18213b}
-.card button,.cart-button{background:#18213b;color:white;border:0;border-radius:6px;padding:10px;cursor:pointer}
-.card button{width:100%}
-footer{text-align:center;padding:25px;background:#18213b;color:white;margin-top:30px}
-.small{font-size:13px;color:#666}
-</style>
-</head>
-<body>
-<header>
-<h1>ZELORA MALL</h1>
-<p>Your Style. Your Home. Your Mall.</p>
-</header>
-<nav>
-<a href="#home">Home</a>
-<a href="#categories">Categories</a>
-<a href="#products">Shop Products</a>
-<a href="#contact">Contact</a>
-</nav>
-<main id="home">
-<section class="hero">
-<h2>Welcome to ZELORA MALL</h2>
-<p>Discover fashion, kitchen appliances, home essentials and more.</p>
-<p>Order online and contact us for delivery details.</p>
-</section>
-<input class="search" id="search" placeholder="Search for products..." oninput="renderProducts()">
-<h2 class="section" id="categories">Shop by Category</h2>
-<div class="categories">
-<button onclick="filterCategory('All')">All Products</button>
-<button onclick="filterCategory('Kitchen Appliances')">Kitchen Appliances</button>
-<button onclick="filterCategory('Home Appliances')">Home Appliances</button>
-<button onclick="filterCategory('Fashion')">Fashion</button>
-<button onclick="filterCategory('Bags')">Bags</button>
-<button onclick="filterCategory('Shoes')">Shoes</button>
-<button onclick="filterCategory('Jewellery')">Jewellery</button>
-</div>
-<h2 class="section" id="products">Our Products</h2>
-<p class="small">Products will appear here after we connect your database.</p>
-<div class="products" id="product-list"></div>
-<p><button class="cart-button" onclick="alert('We will set up your shopping cart in a later step.')">🛒 Shopping Cart</button></p>
-</main>
-<footer id="contact">
-<h3>ZELORA MALL</h3>
-<p>Online shopping made simple.</p>
-<p>For orders and enquiries, contact us on WhatsApp.</p>
-</footer>
-<script>
-let products=[];
-let selectedCategory='All';
-function filterCategory(category){
-selectedCategory=category;
-renderProducts();
-}
-function renderProducts(){
-const search=document.getElementById('search').value.toLowerCase();
-const list=document.getElementById('product-list');
-list.innerHTML='';
-const filtered=products.filter(p=>
-(selectedCategory==='All'||p.category===selectedCategory)&&
-(p.name||'').toLowerCase().includes(search)
-);
-if(!filtered.length){
-list.innerHTML='<p class="small">No products to display yet. We will connect your products database next.</p>';
-return;
-}
-filtered.forEach(p=>{
-const card=document.createElement('div');
-card.className='card';
-const img=document.createElement('img');
-img.src=p.image||'';
-img.alt=p.name||'Product';
-const title=document.createElement('h3');
-title.textContent=p.name||'Product';
-const price=document.createElement('p');
-price.className='price';
-price.textContent='GH₵ '+Number(p.price||0).toFixed(2);
-const button=document.createElement('button');
-button.textContent='Order on WhatsApp';
-button.onclick=()=>window.open('https://wa.me/233279448137?text='+encodeURIComponent('Hello ZELORA MALL, I want to order '+(p.name||'this product')),'_blank');
-card.append(img,title,price,button);
-list.appendChild(card);
-});
-}
-renderProducts();
-</script>
-</body>
-                                      </html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ZELORA MALL | Shop Online</title><style>:root{font-family:system-ui,Arial,sans-serif;color:#242132;background:#f7f5fb}*{box-sizing:border-box}body{margin:0}header{background:#4d237e;color:white;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}h1{font-size:26px;margin:0}.tag{opacity:.9;margin:4px 0 0}button,.btn{cursor:pointer;background:#6e35aa;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:700}button:disabled{opacity:.55;cursor:not-allowed}input,select,textarea{font:inherit;padding:12px;border:1px solid #d8d2e0;border-radius:10px;width:100%}.wrap{max-width:1100px;margin:auto;padding:24px 16px}.hero{padding:28px;background:linear-gradient(110deg,#e7d8fa,#fff);border-radius:18px;margin-bottom:22px}.hero h2{margin:0 0 8px}.controls{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-bottom:20px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:16px}.card{background:white;border-radius:15px;overflow:hidden;box-shadow:0 2px 12px #0000000d}.card img{width:100%;height:190px;object-fit:cover;background:#eee}.card .inside{padding:15px}.card h3{margin:0 0 8px}.price{font-weight:800;color:#57238b}.muted{color:#696273;font-size:14px}.card button{width:100%}.panel{background:white;border-radius:16px;padding:20px;margin-top:24px;box-shadow:0 2px 12px #0000000d}.cartrow{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:10px 0;align-items:center}.cartrow button{padding:7px 11px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.formgrid label{font-size:14px;font-weight:600}.formgrid label input,.formgrid label textarea,.formgrid label select{margin-top:5px}.full{grid-column:1/-1}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.status{padding:12px;border-radius:10px;background:#f2eafb;margin-top:12px;white-space:pre-wrap}.small{font-size:13px;color:#5c5369}footer{text-align:center;padding:30px;color:#64596f}@media(max-width:550px){.controls,.formgrid{grid-template-columns:1fr}.hero{padding:18px}}</style></head><body><header><div><h1>🛍️ ZELORA MALL</h1><p class="tag">Fashion • Home • Electronics • More</p></div><button onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">🛒 Cart <span id="count">0</span></button></header><main class="wrap"><section class="hero"><h2>Discover something you'll love</h2><p>Shop online in Ghana. Choose WhatsApp ordering or website checkout.</p></section><div class="controls"><input id="search" placeholder="Search products…" aria-label="Search products"><select id="category" aria-label="Category"><option value="">All categories</option></select></div><div id="products" class="grid"></div><p id="loadStatus" class="muted">Loading products…</p><section id="cart" class="panel"><h2>🛒 Your cart</h2><div id="cartItems">Your cart is empty.</div><h3 id="total">Total: GH₵0.00</h3><p class="small">Delivery charges, if any, are confirmed separately.</p></section><section class="panel"><h2>Checkout</h2><p class="muted">Complete your details, then choose how to order.</p><form id="checkout"><div class="formgrid"><label>Full name *<input id="name" required maxlength="120"></label><label>Phone number *<input id="phone" required type="tel" maxlength="30"></label><label class="full">Delivery address *<textarea id="address" required rows="2" maxlength="500"></textarea></label><label>Payment option *<select id="payment"><option value="Pay now (manual MoMo)">Pay now (manual MoMo)</option><option value="Pay later">Pay later</option></select></label><label>Additional notes<textarea id="notes" rows="2" maxlength="500"></textarea></label></div><div id="paymentInfo" class="status">Pay now: Send payment to MTN Mobile Money 0532590327. Your order will remain pending until payment is independently verified. Do not share your MoMo PIN.</div><div class="actions"><button type="submit" id="submitOrder">Place order on website</button><button type="button" id="whatsapp">Order via WhatsApp</button></div><div id="message" class="status" role="status" hidden></div></form></section></main><footer>ZELORA MALL • WhatsApp: 0279448137 • MoMo: 0532590327</footer><script>
+'use strict';
+// Public Supabase project URL and publishable key only. Never put a secret/service_role key in this file.
+const SUPABASE_URL='https://cfhfpcjjcmiuucivvmfl.supabase.co';
+const SUPABASE_KEY='sb_publishable_KwN4yY9MEDsS0uYPF_EENA_Lm6vWlml';
+const WHATSAPP='233279448137', MOMO='0532590327';
+let products=[],cart=[];
+const el=id=>document.getElementById(id);
+const money=n=>'GH₵'+Number(n||0).toFixed(2);
+function showMessage(msg){el('message').hidden=false;el('message').textContent=msg;}
+function safeImage(url){try{let u=new URL(url);return ['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}}
+async function api(path,options={}){let r=await fetch(SUPABASE_URL+'/rest/v1/'+path,{...options,headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,...(options.headers||{})}});if(!r.ok)throw Error('Supabase request failed ('+r.status+'): '+(await r.text()).slice(0,200));return r.status===204?null:r.json()}
+function field(p,...names){for(let n of names){if(p[n]!==undefined&&p[n]!==null&&p[n]!=='')return p[n]}return ''}
+function render(){let q=el('search').value.toLowerCase(),cat=el('category').value;let shown=products.filter(p=>(!cat||p.category===cat)&&(`${p.name} ${p.description}`.toLowerCase().includes(q)));el('products').replaceChildren();shown.forEach(p=>{let card=document.createElement('article');card.className='card';let img=document.createElement('img');img.alt=p.name;img.loading='lazy';if(p.image)img.src=p.image;else img.alt='No product image';let inside=document.createElement('div');inside.className='inside';let h=document.createElement('h3');h.textContent=p.name;let desc=document.createElement('p');desc.className='muted';desc.textContent=p.description.slice(0,130);let price=document.createElement('p');price.className='price';price.textContent=money(p.price);let btn=document.createElement('button');btn.textContent='Add to cart';btn.onclick=()=>{let c=cart.find(x=>x.id===p.id);if(c)c.qty++;else cart.push({...p,qty:1});renderCart()};inside.append(h,desc,price,btn);card.append(img,inside);el('products').append(card)});el('loadStatus').textContent=shown.length?'':products.length?'No matching products.':'No products found yet.'}
+function renderCart(){el('cartItems').replaceChildren();let count=0,total=0;cart.forEach((p,i)=>{count+=p.qty;total+=p.price*p.qty;let row=document.createElement('div');row.className='cartrow';let label=document.createElement('span');label.textContent=`${p.name} × ${p.qty} — ${money(p.price*p.qty)}`;let remove=document.createElement('button');remove.textContent='Remove';remove.onclick=()=>{cart.splice(i,1);renderCart()};row.append(label,remove);el('cartItems').append(row)});if(!cart.length)el('cartItems').textContent='Your cart is empty.';el('count').textContent=count;el('total').textContent='Total: '+money(total)}
+function checkoutData(){if(!cart.length){showMessage('Add at least one product to your cart.');return null}if(!el('checkout').reportValidity())return null;let items=cart.map(p=>({id:p.id,name:p.name,price:p.price,quantity:p.qty}));return {customer_name:el('name').value.trim(),customer_phone:el('phone').value.trim(),delivery_address:el('address').value.trim(),payment_method:el('payment').value,payment_status:'Pending verification',order_status:'New',items,total:cart.reduce((s,p)=>s+p.price*p.qty,0),notes:el('notes').value.trim()}}
+function orderText(o){return `Hello ZELORA MALL, I would like to order:\n${o.items.map(p=>`• ${p.name} × ${p.quantity} — ${money(p.price*p.quantity)}`).join('\n')}\nTotal: ${money(o.total)} (excluding delivery)\nName: ${o.customer_name}\nPhone: ${o.customer_phone}\nAddress: ${o.delivery_address}\nPayment: ${o.payment_method}\nNotes: ${o.notes||'None'}`}
+el('whatsapp').onclick=()=>{let o=checkoutData();if(o)window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(orderText(o)),'_blank','noopener')};
+el('payment').onchange=()=>{el('paymentInfo').textContent=el('payment').value.startsWith('Pay now')?`Pay now: Send payment to MTN Mobile Money ${MOMO}. Your order will remain pending until payment is independently verified. Do not share your MoMo PIN.`:'Pay later: Your order will be submitted with payment pending. The seller will contact you to arrange payment.'};
+el('checkout').onsubmit=async e=>{e.preventDefault();let o=checkoutData();if(!o)return;let b=el('submitOrder');b.disabled=true;showMessage('Submitting your order…');try{await api('orders',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify(o)});showMessage('Order received! Payment is not yet verified. We will contact you. '+(o.payment_method.startsWith('Pay now')?'MTN MoMo: '+MOMO:''));cart=[];renderCart()}catch(err){showMessage('Could not save order. Please use the WhatsApp button instead. '+err.message)}finally{b.disabled=false}};
+el('search').oninput=render;el('category').onchange=render;
+(async()=>{try{let rows=await api('products?select=*&limit=200');products=rows.map((p,i)=>({id:field(p,'id','Id')||i,name:String(field(p,'name','Name','product_name')||'Product'),description:String(field(p,'description','Description')||''),price:Number(field(p,'price','Price')||0),image:safeImage(field(p,'image_url','Image_URL','image','picture_url')),category:String(field(p,'category','Category')||'Other')}));let cats=[...new Set(products.map(p=>p.category))].sort();cats.forEach(c=>{let opt=document.createElement('option');opt.value=c;opt.textContent=c;el('category').append(opt)});render()}catch(err){el('loadStatus').textContent='Unable to load products. Check Supabase URL, key, products table and public SELECT policy. '+err.message}})();
+</script></body></html>
