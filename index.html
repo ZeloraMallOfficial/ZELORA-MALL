@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZELORA MALL | Online Shopping</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7fb;color:#222}
+header{background:#18213b;color:white;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:30px;letter-spacing:2px}
+header p{margin:8px 0 0;color:#e5c875}
+nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:white;padding:14px}
+nav a{color:#18213b;text-decoration:none;font-size:14px;font-weight:bold}
+main{max-width:1100px;margin:auto;padding:20px 14px}
+.hero{background:#18213b;color:white;padding:28px 20px;border-radius:12px;text-align:center}
+.hero h2{margin-top:0}
+.search{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;margin:20px 0;font-size:16px}
+h2.section{font-size:21px}
+.categories{display:flex;flex-wrap:wrap;gap:8px}
+.categories button{border:0;background:#e8eaf2;padding:10px 13px;border-radius:20px;cursor:pointer}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
+.card{background:white;padding:12px;border-radius:10px;box-shadow:0 2px 8px #00000010}
+.card img{width:100%;height:150px;object-fit:contain;background:#f3f3f3;border-radius:6px}
+.card h3{font-size:15px}
+.price{font-weight:bold;color:#18213b}
+.card button,.cart-button{background:#18213b;color:white;border:0;border-radius:6px;padding:10px;cursor:pointer}
+.card button{width:100%}
+footer{text-align:center;padding:25px;background:#18213b;color:white;margin-top:30px}
+.small{font-size:13px;color:#666}
+</style>
+</head>
+<body>
+<header>
+<h1>ZELORA MALL</h1>
+<p>Your Style. Your Home. Your Mall.</p>
+</header>
+<nav>
+<a href="#home">Home</a>
+<a href="#categories">Categories</a>
+<a href="#products">Shop Products</a>
+<a href="#contact">Contact</a>
+</nav>
+<main id="home">
+<section class="hero">
+<h2>Welcome to ZELORA MALL</h2>
+<p>Discover fashion, kitchen appliances, home essentials and more.</p>
+<p>Order online and contact us for delivery details.</p>
+</section>
+<input class="search" id="search" placeholder="Search for products..." oninput="renderProducts()">
+<h2 class="section" id="categories">Shop by Category</h2>
+<div class="categories">
+<button onclick="filterCategory('All')">All Products</button>
+<button onclick="filterCategory('Kitchen Appliances')">Kitchen Appliances</button>
+<button onclick="filterCategory('Home Appliances')">Home Appliances</button>
+<button onclick="filterCategory('Fashion')">Fashion</button>
+<button onclick="filterCategory('Bags')">Bags</button>
+<button onclick="filterCategory('Shoes')">Shoes</button>
+<button onclick="filterCategory('Jewellery')">Jewellery</button>
+</div>
+<h2 class="section" id="products">Our Products</h2>
+<p class="small">Products will appear here after we connect your database.</p>
+<div class="products" id="product-list"></div>
+<p><button class="cart-button" onclick="alert('We will set up your shopping cart in a later step.')">🛒 Shopping Cart</button></p>
+</main>
+<footer id="contact">
+<h3>ZELORA MALL</h3>
+<p>Online shopping made simple.</p>
+<p>For orders and enquiries, contact us on WhatsApp.</p>
+</footer>
+<script>
+let products=[];
+let selectedCategory='All';
+function filterCategory(category){
+selectedCategory=category;
+renderProducts();
+}
+function renderProducts(){
+const search=document.getElementById('search').value.toLowerCase();
+const list=document.getElementById('product-list');
+list.innerHTML='';
+const filtered=products.filter(p=>
+(selectedCategory==='All'||p.category===selectedCategory)&&
+(p.name||'').toLowerCase().includes(search)
+);
+if(!filtered.length){
+list.innerHTML='<p class="small">No products to display yet. We will connect your products database next.</p>';
+return;
+}
+filtered.forEach(p=>{
+const card=document.createElement('div');
+card.className='card';
+const img=document.createElement('img');
+img.src=p.image||'';
+img.alt=p.name||'Product';
+const title=document.createElement('h3');
+title.textContent=p.name||'Product';
+const price=document.createElement('p');
+price.className='price';
+price.textContent='GH₵ '+Number(p.price||0).toFixed(2);
+const button=document.createElement('button');
+button.textContent='Order on WhatsApp';
+button.onclick=()=>window.open('https://wa.me/233279448137?text='+encodeURIComponent('Hello ZELORA MALL, I want to order '+(p.name||'this product')),'_blank');
+card.append(img,title,price,button);
+list.appendChild(card);
+});
+}
+renderProducts();
+</script>
+</body>
+                                      </html>
